@@ -1,0 +1,45 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/artreikan/typescript-developer-project-81/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/artreikan/typescript-developer-project-81/actions)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artreikan/typescript-developer-project-81.git"
+  },
+  "author": "Roman Orudzhov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artreikan/typescript-developer-project-81/issues"
+  },
+  "homepage": "https://github.com/artreikan/typescript-developer-project-81#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "rimraf ./dist && tsc",
+    "start:dev": "npx nodemon",
+    "start:dev-experimental": "node --watch --loader=ts-node/esm ./src/index.ts",
+    "start": "npm run build && node dist/index.js",
+    "exec": "npx ts-node ./src/index.ts",
+    "lint": "npx eslint ."
+  },
+  "devDependencies": {
+    "@types/eslint": "8.44.6",
+    "@types/node": "20.8.10",
+    "@typescript-eslint/eslint-plugin": "6.10.0",
+    "@typescript-eslint/parser": "6.10.0",
+    "eslint": "8.53.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-airbnb-typescript": "17.1.0",
+    "eslint-config-standard-with-typescript": "39.1.1",
+    "eslint-plugin-import": "2.29.0",
+    "eslint-plugin-n": "16.3.1",
+    "eslint-plugin-promise": "6.1.1",
+    "nodemon": "3.0.1",
+    "npm-check-updates": "16.14.6",
+    "rimraf": "5.0.5",
+    "ts-node": "10.9.1",
+    "typescript": "5.2.2"
+  }
+}
