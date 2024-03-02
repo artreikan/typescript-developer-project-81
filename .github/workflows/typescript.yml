@@ -56,7 +56,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: make install
       - run: make build
-      - uses: paambaati/codeclimate-action@v2.2.4
+      - uses: paambaati/codeclimate-action@v5.0.0
         env:
           CC_TEST_REPORTER_ID: ${{secrets.CC_TEST_REPORTER_ID}}
         with:
