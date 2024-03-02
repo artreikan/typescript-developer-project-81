@@ -21,7 +21,6 @@ module.exports = {
         parser: '@typescript-eslint/parser',
         project: './tsconfig.json',
         tsconfigRootDir: __dirname,
-        
       },
       files: ['*.ts', '*tsx'],
       rules: {},
