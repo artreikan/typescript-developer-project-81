@@ -62,4 +62,4 @@ jobs:
         with:
           coverageCommand: make coverage
           coverageLocations: |
-            ${{github.workspace}}/*.lcov:lcov
+            ${{github.workspace}}/coverage/clover.xml
