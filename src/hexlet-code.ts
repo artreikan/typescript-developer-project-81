@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import Tag from './tag';
 
 interface FormParams {
@@ -13,30 +12,31 @@ type InputParams = {
 class HexletCode {
   private static formTag: Tag;
 
-  private static inputs: string[] = [];
+  private inputs: string[] = [];
 
   private constructor(private readonly template: Record<string, string>) {}
 
-  private static formatInputs(): string {
+  private formatInputs(): string {
     return this.inputs.join('');
   }
 
-  static formFor(
+  public static formFor(
     template: Record<string, string>,
     params: FormParams,
     callback: (form: HexletCode) => void,
   ): string {
-    callback(new HexletCode(template));
+    const hc = new HexletCode(template);
+    callback(hc);
 
     this.formTag = new Tag('form', {
       action: params.url ?? '#',
       method: params.method ?? 'post',
-    }, HexletCode.formatInputs());
+    }, hc.formatInputs());
 
     return this.formTag.toString();
   }
 
-  input(name: string, params: InputParams = {}): void {
+  public input(name: string, params: InputParams = {}): void {
     if (!Object.hasOwn(this.template, name)) {
       throw new Error(`Field '${name}' does not exist in the template.`);
     }
@@ -53,7 +53,7 @@ class HexletCode {
       this.template[name],
     ).toString();
 
-    HexletCode.inputs.push(input);
+    this.inputs.push(input);
   }
 }
 
