@@ -12,12 +12,12 @@ type InputParams = {
 class HexletCode {
   private static formTag: Tag;
 
-  private inputs: string[] = [];
+  private fields: string[] = [];
 
   private constructor(private readonly template: Record<string, string>) {}
 
-  private formatInputs(): string {
-    return this.inputs.join('');
+  private formatFields(): string {
+    return this.fields.join('');
   }
 
   public static formFor(
@@ -31,7 +31,7 @@ class HexletCode {
     this.formTag = new Tag('form', {
       action: params.url ?? '#',
       method: params.method ?? 'post',
-    }, hc.formatInputs());
+    }, hc.formatFields());
 
     return this.formTag.toString();
   }
@@ -43,7 +43,7 @@ class HexletCode {
 
     const { as = 'input', ...rest } = params;
 
-    const input = new Tag(
+    const field = new Tag(
       as,
       {
         name,
@@ -53,7 +53,7 @@ class HexletCode {
       this.template[name],
     ).toString();
 
-    this.inputs.push(input);
+    this.fields.push(field);
   }
 }
 
