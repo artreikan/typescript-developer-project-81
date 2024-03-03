@@ -41,13 +41,17 @@ class HexletCode {
       throw new Error(`Field '${name}' does not exist in the template.`);
     }
 
-    const { as = 'input', ...rest } = params;
+    const {
+      as = 'input', cols = '20', rows = '40', ...rest
+    } = params;
 
     const field = new Tag(
       as,
       {
         name,
         value: as === 'input' ? this.template[name] : '',
+        cols: as === 'textarea' ? cols : '',
+        rows: as === 'textarea' ? rows : '',
         ...rest,
       },
       this.template[name],
