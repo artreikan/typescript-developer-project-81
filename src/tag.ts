@@ -3,7 +3,7 @@ import SELF_CLOSING_TAGS from './constants';
 class Tag {
   constructor(
     private tagName: string,
-    private attributes: Record<string, string> = {},
+    private attributes: Record<string, string | number> = {},
     private child: string = '',
   ) {}
 
@@ -16,7 +16,10 @@ class Tag {
       return '';
     }
 
-    return ` ${Object.entries(this.attributes).map(([key, value]) => `${key}="${value}"`).join(' ')}`;
+    return ` ${Object.entries(this.attributes)
+      .map(([key, value]) => (value ? `${key}="${value}"` : ''))
+      .filter(Boolean)
+      .join(' ')}`;
   }
 
   toString(): string {
