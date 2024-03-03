@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import Tag from './tag';
 
 console.log(new Tag('br').toString());
