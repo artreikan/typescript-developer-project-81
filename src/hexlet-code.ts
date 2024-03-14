@@ -1,4 +1,5 @@
 import Tag from './tag';
+import capitalize from './utils/capitalize';
 
 interface FormParams {
   url?: string;
@@ -45,6 +46,8 @@ class HexletCode {
       as = 'input', cols = '20', rows = '40', ...rest
     } = params;
 
+    const label = new Tag('label', { for: name }, capitalize(name)).toString();
+
     const field = new Tag(
       as,
       {
@@ -57,7 +60,12 @@ class HexletCode {
       this.template[name],
     ).toString();
 
-    this.fields.push(field);
+    this.fields.push(label, field);
+  }
+
+  public submit(label: string = 'Save'): void {
+    const button = new Tag('input', { type: 'submit', value: label }).toString();
+    this.fields.push(button);
   }
 }
 
