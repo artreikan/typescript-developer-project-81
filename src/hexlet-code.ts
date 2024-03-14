@@ -30,8 +30,8 @@ class HexletCode {
     callback(hc);
 
     this.formTag = new Tag('form', {
-      action: params.url ?? '#',
       method: params.method ?? 'post',
+      action: params.url ?? '#',
     }, hc.formatFields());
 
     return this.formTag.toString();
@@ -48,17 +48,31 @@ class HexletCode {
 
     const label = new Tag('label', { for: name }, capitalize(name)).toString();
 
-    const field = new Tag(
-      as,
-      {
-        name,
-        value: as === 'input' ? this.template[name] : '',
-        cols: as === 'textarea' ? cols : '',
-        rows: as === 'textarea' ? rows : '',
-        ...rest,
-      },
-      this.template[name],
-    ).toString();
+    let field = '';
+
+    switch (as) {
+      case 'input': {
+        field = new Tag('input', {
+          name,
+          type: 'text',
+          value: this.template[name],
+          ...rest,
+        }).toString();
+        break;
+      }
+      case 'textarea': {
+        field = new Tag('textarea', {
+          cols,
+          rows,
+          name,
+          ...rest,
+        }).toString();
+        break;
+      }
+      default:
+        field = '';
+        break;
+    }
 
     this.fields.push(label, field);
   }
