@@ -66,7 +66,7 @@ class HexletCode {
           rows,
           name,
           ...rest,
-        }).toString();
+        }, this.template[name]).toString();
         break;
       }
       default:
